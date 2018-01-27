@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <include layout="@layout/title_bar"
+        android:id="@+id/titleBar"
+        />
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_below="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        </FrameLayout>
+
+    <View
+        android:background="#bfbfbf"
+        android:layout_above="@+id/menu_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"/>
+
+    <RadioGroup
+        android:background="#ffffff "
+        android:id="@+id/menu_bar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <RadioButton
+            android:id="@+id/btIndex"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/tab_menu_index"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/btClass"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/tab_menu_class"
+            android:text="课堂" />
+
+        <RadioButton
+            android:id="@+id/btGrades"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/tab_menu_grades"
+            android:text="成绩" />
+
+        <RadioButton
+            android:id="@+id/btInfo"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/tab_menu_info"
+            android:text="个人" />
+    </RadioGroup>
+
+
+</RelativeLayout>
