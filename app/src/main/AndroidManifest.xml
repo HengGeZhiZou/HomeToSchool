@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".modules.IndexModule.ReadNewsActivity"/>
+        <activity android:name=".modules.ClassModule.ProjectIntroduceActivity"/>
+        <activity android:name=".modules.ClassModule.part.ClassContentActivity"/>
+        <activity android:name=".modules.ClassModule.part.CommentActivity"/>
+        <activity android:name=".modules.InfoModule.UpdateInfoActivity"/>
     </application>
 
 </manifest>

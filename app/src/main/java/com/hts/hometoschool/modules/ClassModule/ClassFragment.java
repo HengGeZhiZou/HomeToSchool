@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.hts.hometoschool.R;
-import com.hts.hometoschool.modules.ClassModule.part.InnovationFragment;
-import com.hts.hometoschool.modules.ClassModule.part.ScienceFragment;
-import com.hts.hometoschool.modules.ClassModule.part.SubjectFragment;
+import com.hts.hometoschool.modules.ClassModule.part.HotProjectFragment;
+import com.hts.hometoschool.modules.ClassModule.part.LatestFragment;
+import com.hts.hometoschool.modules.ClassModule.part.ProjectApplyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +36,15 @@ public class ClassFragment extends Fragment{
         titleList=new ArrayList<>();
         fragmentList=new ArrayList<>();
 
-        titleList.add("创新创业");
-        titleList.add("学科竞赛");
-        titleList.add("科研成果");
+        titleList.add("项目申报");
+        titleList.add("推荐项目");
+        titleList.add("最新成果");
 
 
-        fragmentList.add(new InnovationFragment());
-        fragmentList.add(new SubjectFragment());
-        fragmentList.add(new ScienceFragment());
+        fragmentList.add(new ProjectApplyFragment());
+        fragmentList.add(new HotProjectFragment());
+        fragmentList.add(new LatestFragment());
+
 
 
 //        pagerTabStrip.setDrawFullUnderline(false);
@@ -51,11 +52,12 @@ public class ClassFragment extends Fragment{
         ClassFragmentPagerAdapter classFragmentPagerAdapter=new ClassFragmentPagerAdapter(getFragmentManager(),fragmentList,titleList);
 
         viewPager.setAdapter(classFragmentPagerAdapter);
+        viewPager.setCurrentItem(1);
 //        pagerSlidingTabStrip.
         pagerSlidingTabStrip.setIndicatorColor(R.color.news_bar);
         pagerSlidingTabStrip.setIndicatorHeight(10);
         pagerSlidingTabStrip.setShouldExpand(true);
         pagerSlidingTabStrip.setViewPager(viewPager);
         return view;
-    }
+}
 }

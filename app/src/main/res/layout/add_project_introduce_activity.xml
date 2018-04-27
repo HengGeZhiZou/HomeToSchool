@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请输入你的项目介绍:" />
+
+
+        <EditText
+            android:id="@+id/introduce_content"
+            android:textSize="15sp"
+            android:gravity="top"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:text="请详细叙述项目内容(包括所获奖项，设计思路，特色创新，基本功能，所用技术等)。"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="提交"
+            android:layout_marginTop="10dp"
+            android:id="@+id/introduce_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#10405B"
+            android:textColor="#ffffff"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

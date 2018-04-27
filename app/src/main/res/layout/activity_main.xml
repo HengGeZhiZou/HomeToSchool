@@ -13,12 +13,14 @@
             android:id="@+id/frame"
             android:layout_below="@+id/titleBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_line"
             >
 
         </FrameLayout>
 
     <View
+        android:id="@+id/bottom_line"
         android:background="#bfbfbf"
         android:layout_above="@+id/menu_bar"
         android:layout_width="match_parent"
@@ -45,6 +47,7 @@
             android:text="课堂" />
 
         <RadioButton
+            android:layout_height="match_parent"
             android:id="@+id/btGrades"
             style="@style/tab_menu_item"
             android:drawableTop="@drawable/tab_menu_grades"

@@ -38,7 +38,7 @@ public class IndexFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view=inflater.inflate(R.layout.index_fragment,container,false);
+        View view=inflater.inflate(R.layout.index_fragment,container,false);
        banner=view.findViewById(R.id.bannerImg);
         pagerTabStrip=view.findViewById(R.id.newsTitle);
        viewPager=view.findViewById(R.id.indexView);
@@ -60,11 +60,10 @@ public class IndexFragment extends Fragment{
 
         pagerTabStrip.setDrawFullUnderline(false);
         pagerTabStrip.setTabIndicatorColor(R.color.title);
-        NewsFragmentPagerAdapter newsFragmentPagerAdapter=new NewsFragmentPagerAdapter(getFragmentManager(),fragmentList,titleList);
+        NewsFragmentPagerAdapter newsFragmentPagerAdapter=new NewsFragmentPagerAdapter(getChildFragmentManager(),fragmentList,titleList);
 
         viewPager.setAdapter(newsFragmentPagerAdapter);
-
-
+        viewPager.setOffscreenPageLimit(4);
         return view;
     }
 

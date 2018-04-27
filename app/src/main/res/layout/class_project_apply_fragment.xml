@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f0f0f0"
+        />
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/project_name"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="项目名称"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:gravity="right|center_vertical"
+            android:layout_toRightOf="@+id/project_name"
+            android:layout_marginLeft="10dp"
+            android:hint="请输入项目名称"
+            android:ellipsize="end"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_marginRight="8dp"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f0f0f0"
+        />
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/project_teacher"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="指导老师"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:gravity="right|center_vertical"
+            android:layout_toRightOf="@+id/project_teacher"
+            android:layout_marginLeft="10dp"
+            android:hint="请输入指导老师姓名"
+            android:ellipsize="end"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_marginRight="8dp"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f0f0f0"
+        />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/project_team"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="团队成员"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:gravity="right|center_vertical"
+            android:layout_toRightOf="@+id/project_team"
+            android:layout_marginLeft="10dp"
+            android:hint="请输入团队成员"
+            android:ellipsize="end"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_marginRight="8dp"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f0f0f0"
+        />
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/project_type"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="项目类型"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            />
+
+        <org.angmarch.views.NiceSpinner
+            android:background="#fafafa"
+            android:text="互联网+"
+            android:layout_alignParentRight="true"
+            android:id="@+id/project_type_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f0f0f0"
+        />
+    <RelativeLayout
+        android:id="@+id/project_introduce_tab"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/project_introduce"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="项目简介"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            />
+
+        <ImageView
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/arrow_left"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f0f0f0"
+        />
+    <RelativeLayout
+        android:id="@+id/project_img_tab"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/project_img"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="项目图片"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/arrow_left"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f0f0f0"
+        />
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="注:以上为必填选项，请务必认真填写。图片为奖状清晰照片，团队合照等，提高审核通过率。"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="提交"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/projectApplyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#10405B"
+        android:textColor="#ffffff"
+        />
+
+</LinearLayout>

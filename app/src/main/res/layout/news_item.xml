@@ -2,28 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
         >
         <TextView
-            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
             android:id="@+id/news_title"
-            android:text="陈宁校长辅导学科建设规划及方案..."
+            android:text="学校召开党委中心组学习2018年第一次扩大学习会 观看《红缘》电影 "
             android:ellipsize="end"
             android:singleLine="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/news_date"
+            />
 
         <TextView
-            android:layout_marginLeft="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
             android:id="@+id/news_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="01.25" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

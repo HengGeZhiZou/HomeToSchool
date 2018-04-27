@@ -7,11 +7,6 @@
     <include layout="@layout/title_bar"
         />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.25dp"
-        android:background="#c6c6c6"
-        />
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -19,6 +14,7 @@
         android:gravity="center"
         >
         <TextView
+            android:id="@+id/news_title_index"
             android:text="陈宁校长辅导学科建设规划及方案撰写"
             android:textSize="20sp"
             android:gravity="center"
@@ -34,10 +30,12 @@
         android:gravity="center"
         >
         <TextView
+            android:id="@+id/news_type"
             android:text="校内新闻"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/news_date_index"
             android:layout_marginLeft="20dp"
             android:text="2018.01.26"
             android:layout_width="wrap_content"
@@ -45,10 +43,7 @@
 
     </LinearLayout>
 
-    <View
-        android:background="#c6c6c6"
-        android:layout_width="match_parent"
-        android:layout_height="0.75dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -58,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/news_contents_index"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
