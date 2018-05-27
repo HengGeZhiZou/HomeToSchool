@@ -1,23 +1,24 @@
-package com.hts.hometoschool.modules.ClassModule.part;
+package com.hts.hometoschool.modules.InfoModule;
 
-
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.hts.hometoschool.R;
 import com.hts.hometoschool.api.Config;
 import com.hts.hometoschool.api.NewsApi;
+import com.hts.hometoschool.pojo.HTSApp;
 import com.hts.hometoschool.pojo.Project;
 import com.hts.hometoschool.pojo.ResultHttp;
+import com.hts.hometoschool.pojo.Students;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,22 +37,29 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class LatestFragment extends Fragment {
+
+public class NoPassProActivity extends AppCompatActivity {
+
     private ListView listView;
     private SimpleAdapter simpleAdapter;
     private List<Map<String, Object>> mapList;
     private PtrFrameLayout ptrFrameLayout;
     private List<Project> projectList;
     private int currPage=1;
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.class_last_pro, container, false);
-        listView = view.findViewById(R.id.class_last);
-        mapList = new ArrayList<>();
 
-        ptrFrameLayout=view.findViewById(R.id.proLast);
-        final MaterialHeader header = new MaterialHeader(view.getContext());
+    @SuppressLint("ResourceType")
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.checking_pro_activity);
+        setTitle();
+        listView = findViewById(R.id.checking_li);
+        mapList = new ArrayList<>();
+        HTSApp htsApp= (HTSApp)getApplication();
+        Students s=htsApp.getStudents();
+        final Students students=s;
+        ptrFrameLayout=findViewById(R.id.checkingPtr);
+        final MaterialHeader header = new MaterialHeader(this);
 
         header.setPadding(0, PtrLocalDisplay.dp2px(15), 0, 0);//显示相关工具类，用于获取用户屏幕宽度、高度以及屏幕密度。同时提供了dp和px的转化方法。
         ptrFrameLayout.setHeaderView(header);
@@ -64,8 +72,9 @@ public class LatestFragment extends Fragment {
                     @Override
                     public void run() {
                         ptrFrameLayout.refreshComplete();
+//刷新
                         mapList.clear();
-                        getLastProject(currPage);
+                        getChecking(students.getStuNum(),currPage);
                         simpleAdapter.notifyDataSetChanged();
                     }
                 }, 1800);
@@ -78,52 +87,37 @@ public class LatestFragment extends Fragment {
             }
         });
 
-        getLastProject(currPage);
-        simpleAdapter = new SimpleAdapter(view.getContext(),mapList, R.layout.class_content_item, new String[]{"pic","type","title","student","hotImg","commentNum"},new int[]{
-                R.id.class_item_img,R.id.class_type,R.id.class_title,R.id.student_name,R.id.hotImg,R.id.comment_num
+
+        getChecking(students.getStuNum(),currPage);
+        simpleAdapter = new SimpleAdapter(this,mapList, R.layout.class_content_item, new String[]{"pic","type","title","student","hotImg","commentNum","reason"},new int[]{
+                R.id.class_item_img,R.id.class_type,R.id.class_title,R.id.student_name,R.id.hotImg,R.id.comment_num,R.id.noPassReason
         });
         listView.setAdapter(simpleAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(view.getContext(),LastProActivity.class);
-                intent.putExtra("project",projectList.get(position));
-                startActivity(intent);
-            }
-        });
-//        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(AbsListView absListView, int i) {
-//            }
-//
-//            @Override
-//            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-//                if (listView.getCount()!=0&&listView.getLastVisiblePosition()>=listView.getCount()-1){
-//                    Map<String,Object> map=new HashMap<>();
-//                    map.put("pic",R.mipmap.internet);
-//                    map.put("type","互联网+");
-//                    map.put("title","基于google人脸识别的签到google人脸识别的签到系统");
-//                    map.put("student","组员:罗友恒 张丽 马云");
-//                    map.put("hotImg",R.mipmap.chat);
-//                    map.put("commentNum","12");
-//                    mapList.add(map);
-//                    simpleAdapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
-        return view;
+
     }
 
+    public void setTitle() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            //给状态栏设置颜色。
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        }
+    }
 
-    void getLastProject(final int currPage) {
+    void getChecking(String stuId, int page) {
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Config.lastPro())
+                .baseUrl(Config.personNoPassPro())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         NewsApi service = retrofit.create(NewsApi.class);
-        service.getLastPro(currPage)
+        service.getPersonNoPassPro(stuId,page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResultHttp<List<Project>>>() {
@@ -139,6 +133,7 @@ public class LatestFragment extends Fragment {
                     public void onNext(ResultHttp<List<Project>> listResultHttp) {
 
                         if (listResultHttp.getCode() == 100 && currPage == 1) {
+
                             projectList = listResultHttp.getObj();
                             for (Project project : projectList) {
                                 Map<String, Object> map = new HashMap<>();
@@ -158,10 +153,12 @@ public class LatestFragment extends Fragment {
                                 map.put("title",project.getProName());
                                 map.put("student","组员："+project.getProTeamer());
                                 map.put("hotImg",R.mipmap.calender);
-                                map.put("commentNum","2018-05-16");
+                                map.put("commentNum","2018-05-19");
+                                map.put("reason","未通过理由："+project.getProIntroduce());
                                 mapList.add(map);
                             }
                             listView.setAdapter(simpleAdapter);
+                            simpleAdapter.notifyDataSetChanged();
                         } else if (listResultHttp.getCode() == 100 && currPage > 1) {
                             List<Project> list = listResultHttp.getObj();
                             for (Project project : list) {

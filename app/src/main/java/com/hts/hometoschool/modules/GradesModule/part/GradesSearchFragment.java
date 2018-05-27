@@ -47,12 +47,32 @@ public class GradesSearchFragment extends Fragment {
     }
 
     List<Map<String,Object>> getMapList(){
-        for (int i=0;i<8;i++){
+
             Map<String,Object> map=new HashMap<>();
             map.put("course","高等数学（一）");
-            map.put("score","77");
+            map.put("score","88");
             mapList.add(map);
-        }
+        Map<String,Object> map1=new HashMap<>();
+        map1.put("course","计算机基础");
+        map1.put("score","92");
+        mapList.add(map1);
+        Map<String,Object> map2=new HashMap<>();
+        map2.put("course","大学物理");
+        map2.put("score","89");
+        mapList.add(map2);
+        Map<String,Object> map3=new HashMap<>();
+        map3.put("course","马克思基本原理");
+        map3.put("score","99");
+        mapList.add(map3);
+        Map<String,Object> map4=new HashMap<>();
+        map4.put("course","大学体育");
+        map4.put("score","99");
+        mapList.add(map4);
+        Map<String,Object> map5=new HashMap<>();
+        map5.put("course","数据结构");
+        map5.put("score","98");
+        mapList.add(map5);
+
         return mapList;
     }
 }

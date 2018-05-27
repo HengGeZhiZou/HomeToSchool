@@ -15,6 +15,9 @@ import com.hts.hometoschool.R;
 import com.hts.hometoschool.modules.ClassModule.part.HotProjectFragment;
 import com.hts.hometoschool.modules.ClassModule.part.LatestFragment;
 import com.hts.hometoschool.modules.ClassModule.part.ProjectApplyFragment;
+import com.hts.hometoschool.modules.ClassModule.part.ProjectCheckFragment;
+import com.hts.hometoschool.pojo.HTSApp;
+import com.hts.hometoschool.pojo.Students;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +38,27 @@ public class ClassFragment extends Fragment{
 //        pagerTabStrip=view.findViewById(R.id.class_title);
         titleList=new ArrayList<>();
         fragmentList=new ArrayList<>();
+        HTSApp htsApp= (HTSApp) getActivity().getApplication();
+        String role=htsApp.checkRole();
+        if (role.equals("teacher")){
+            titleList.add("项目审核");
+            fragmentList.add(new ProjectCheckFragment());
+        }else if (role.equals("student")){
+            Students s=htsApp.getStudents();
+            if (s.getRole().equals("student")){
+                titleList.add("项目申报");
+                fragmentList.add(new ProjectApplyFragment());
+            }
+        }
 
-        titleList.add("项目申报");
+
+
+
         titleList.add("推荐项目");
         titleList.add("最新成果");
 
+//
 
-        fragmentList.add(new ProjectApplyFragment());
         fragmentList.add(new HotProjectFragment());
         fragmentList.add(new LatestFragment());
 

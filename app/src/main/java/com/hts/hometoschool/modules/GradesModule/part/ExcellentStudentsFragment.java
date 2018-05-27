@@ -52,7 +52,7 @@ public class ExcellentStudentsFragment extends Fragment {
             map.put("stupic",R.mipmap.default_user);
             map.put("name","马云");
             map.put("class","2014级2班");
-            map.put("grades","87.2");
+            map.put("grades",88-i);
             mapList.add(map);
         }
         return mapList;

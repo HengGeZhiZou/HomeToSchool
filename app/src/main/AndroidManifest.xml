@@ -12,19 +12,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".pojo.HTSApp"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".modules.IndexModule.ReadNewsActivity"/>
         <activity android:name=".modules.ClassModule.ProjectIntroduceActivity"/>
         <activity android:name=".modules.ClassModule.part.ClassContentActivity"/>
         <activity android:name=".modules.ClassModule.part.CommentActivity"/>
         <activity android:name=".modules.InfoModule.UpdateInfoActivity"/>
+        <activity android:name=".modules.ClassModule.part.CheckNotes"/>
+        <activity android:name=".modules.ClassModule.part.ProCheckActivity"/>
+        <activity android:name=".modules.ClassModule.part.LastProActivity"/>
+        <activity android:name=".modules.InfoModule.CheckingProActivity" />
+        <activity android:name=".modules.InfoModule.NoPassProActivity"/>
+        <activity android:name=".modules.InfoModule.PassProActivity" />
+        <activity android:name=".modules.InfoModule.loginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

@@ -19,10 +19,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hts.hometoschool.R;
 import com.hts.hometoschool.modules.ClassModule.part.GifSizeFilter;
 import com.hts.hometoschool.modules.ClassModule.part.ProjectApplyFragment;
+import com.hts.hometoschool.pojo.Students;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -37,11 +39,15 @@ public class UpdateInfoActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
     private List<Uri> mSelected;
     private ImageView imageView;
+    private TextView stuName;
+    private TextView stuMajor;
+    private TextView stuClass;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_info);
+        Students students= (Students) getIntent().getSerializableExtra("student");
         mSelected=new ArrayList<>();
         relativeLayout=findViewById(R.id.picChoose);
         imageView=findViewById(R.id.img_person);
@@ -52,9 +58,12 @@ public class UpdateInfoActivity extends AppCompatActivity {
                 ImgChoose();
             }
         });
-
-
-
+         stuName=findViewById(R.id.info_name);
+         stuMajor=findViewById(R.id.info_major);
+         stuClass=findViewById(R.id.info_class);
+            stuName.setText(students.getStuName());
+            stuMajor.setText(students.getStuMajor());
+            stuClass.setText(students.getStuClass());
     }
 
 

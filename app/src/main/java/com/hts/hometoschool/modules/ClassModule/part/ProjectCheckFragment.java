@@ -16,9 +16,11 @@ import android.widget.SimpleAdapter;
 import com.hts.hometoschool.R;
 import com.hts.hometoschool.api.Config;
 import com.hts.hometoschool.api.NewsApi;
+import com.hts.hometoschool.pojo.News;
 import com.hts.hometoschool.pojo.Project;
 import com.hts.hometoschool.pojo.ResultHttp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,21 +38,22 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class LatestFragment extends Fragment {
+public class ProjectCheckFragment extends Fragment {
     private ListView listView;
     private SimpleAdapter simpleAdapter;
     private List<Map<String, Object>> mapList;
     private PtrFrameLayout ptrFrameLayout;
     private List<Project> projectList;
     private int currPage=1;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.class_last_pro, container, false);
-        listView = view.findViewById(R.id.class_last);
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.class_check_fragment,container,false);
+        listView = view.findViewById(R.id.class_check);
         mapList = new ArrayList<>();
 
-        ptrFrameLayout=view.findViewById(R.id.proLast);
+        ptrFrameLayout=view.findViewById(R.id.ptrCheck);
         final MaterialHeader header = new MaterialHeader(view.getContext());
 
         header.setPadding(0, PtrLocalDisplay.dp2px(15), 0, 0);//显示相关工具类，用于获取用户屏幕宽度、高度以及屏幕密度。同时提供了dp和px的转化方法。
@@ -64,8 +67,9 @@ public class LatestFragment extends Fragment {
                     @Override
                     public void run() {
                         ptrFrameLayout.refreshComplete();
-                        mapList.clear();
-                        getLastProject(currPage);
+//刷新
+                         mapList.clear();
+                         getProject(currPage);
                         simpleAdapter.notifyDataSetChanged();
                     }
                 }, 1800);
@@ -78,7 +82,8 @@ public class LatestFragment extends Fragment {
             }
         });
 
-        getLastProject(currPage);
+
+        getProject(currPage);
         simpleAdapter = new SimpleAdapter(view.getContext(),mapList, R.layout.class_content_item, new String[]{"pic","type","title","student","hotImg","commentNum"},new int[]{
                 R.id.class_item_img,R.id.class_type,R.id.class_title,R.id.student_name,R.id.hotImg,R.id.comment_num
         });
@@ -87,43 +92,23 @@ public class LatestFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(view.getContext(),LastProActivity.class);
+                Intent intent=new Intent(view.getContext(),ProCheckActivity.class);
                 intent.putExtra("project",projectList.get(position));
                 startActivity(intent);
             }
         });
-//        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(AbsListView absListView, int i) {
-//            }
-//
-//            @Override
-//            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-//                if (listView.getCount()!=0&&listView.getLastVisiblePosition()>=listView.getCount()-1){
-//                    Map<String,Object> map=new HashMap<>();
-//                    map.put("pic",R.mipmap.internet);
-//                    map.put("type","互联网+");
-//                    map.put("title","基于google人脸识别的签到google人脸识别的签到系统");
-//                    map.put("student","组员:罗友恒 张丽 马云");
-//                    map.put("hotImg",R.mipmap.chat);
-//                    map.put("commentNum","12");
-//                    mapList.add(map);
-//                    simpleAdapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
         return view;
     }
 
 
-    void getLastProject(final int currPage) {
+    void getProject(final int currPage) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Config.lastPro())
+                .baseUrl(Config.getHotPro())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         NewsApi service = retrofit.create(NewsApi.class);
-        service.getLastPro(currPage)
+        service.getHotPro(currPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResultHttp<List<Project>>>() {
@@ -190,4 +175,5 @@ public class LatestFragment extends Fragment {
                     }
                 });
     }
+
 }
